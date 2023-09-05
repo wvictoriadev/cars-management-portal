@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UsuarioService } from 'src/app/services/usuario.service';
 
 @Component({
   selector: 'app-register',
@@ -11,27 +12,33 @@ export class RegisterComponent {
 
   public registerForm = this.fb.group(
     {
-      nombre: ['', [Validators.required, Validators.minLength(3)]],
-      email: ['', [Validators.required, Validators.email]],
+      // nombre: ['', [Validators.required, Validators.minLength(3)]],
+      username: ['', [Validators.required]],
       password: ['', Validators.required],
-      password2: ['', Validators.required],
-      terminos: [false, Validators.required],
+      // password2: ['', Validators.required],
+      // terminos: [false, Validators.required],
     },
     {
       validators: this.passwordsIguales('password', 'password2'),
     }
   );
 
-  constructor(private fb: FormBuilder) {}
+  constructor(
+    private fb: FormBuilder,
+    private usuarioService: UsuarioService
+  ) {}
 
   crearUsuario() {
     this.formSubmitted = true;
     console.log(this.registerForm.value);
-    if (this.registerForm.valid) {
-      console.log('Enviando formulario...');
-    } else {
-      console.log('Formulario incorrecto...');
+    if (this.registerForm.invalid) {
+      return;
     }
+
+    this.usuarioService.crearUsuario(this.registerForm.value).subscribe(resp => {
+      console.log('Usuario Creado...');
+      console.log(resp);
+    }, (err) => console.warn(err));
   }
 
   camposNoValidos(campo: string): boolean {
