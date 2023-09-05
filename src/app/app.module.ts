@@ -10,6 +10,10 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { BreadcrumbsComponent } from './shared/breadcrumbs/breadcrumbs.component';
 import { SidebarComponent } from './shared/sidebar/sidebar.component';
 import { HeaderComponent } from './shared/header/header.component';
+import { PagesComponent } from './pages/pages.component';
+import { CarsComponent } from './pages/cars/cars.component';
+import { EmployeesComponent } from './pages/employees/employees.component';
+import { TripsComponent } from './pages/trips/trips.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +24,11 @@ import { HeaderComponent } from './shared/header/header.component';
     DashboardComponent,
     BreadcrumbsComponent,
     SidebarComponent,
-    HeaderComponent
+    HeaderComponent,
+    PagesComponent,
+    CarsComponent,
+    EmployeesComponent,
+    TripsComponent
   ],
   imports: [
     BrowserModule,
