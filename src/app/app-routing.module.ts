@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
-import { PagenotfoundComponent } from './pages/pagenotfound/pagenotfound.component';
+import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 import { PagesComponent } from './pages/pages.component';
 import { CarsComponent } from './pages/cars/cars.component';
 import { EmployeesComponent } from './pages/employees/employees.component';
