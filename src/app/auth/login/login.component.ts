@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import Swal from 'sweetalert2';
 
 import { UsuarioService } from 'src/app/services/usuario.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -20,17 +21,16 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private usuarioService: UsuarioService
+    private usuarioService: UsuarioService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {}
 
   login() {
-    console.log(this.loginForm.value);
-
     this.usuarioService.login(this.loginForm.value).subscribe(
       (resp) => {
-        console.log(resp);
+        this.router.navigateByUrl('/');
       },
       (err) => {
         Swal.fire('Error', err, 'error');
