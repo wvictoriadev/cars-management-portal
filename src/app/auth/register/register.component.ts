@@ -7,17 +7,37 @@ import { FormBuilder, Validators } from '@angular/forms';
   styleUrls: ['./register.component.css'],
 })
 export class RegisterComponent {
+  public formSubmitted = false;
+
   public registerForm = this.fb.group({
-    nombre: ['Juan Carlos', [Validators.required, Validators.minLength(3)]],
-    email: ['juan.velez@gmail.com', [Validators.required]],
-    password: ['12345678a', [Validators.required]],
-    password2: ['12345678a', [Validators.required]],
+    nombre: ['', [Validators.required, Validators.minLength(3)]],
+    email: ['', [Validators.required, Validators.email]],
+    password: ['', [Validators.required]],
+    password2: ['', [Validators.required]],
     terminos: [false, [Validators.required]],
   });
 
   constructor(private fb: FormBuilder) {}
 
-  crearUsuario(){
-    console.log(this.registerForm.value);
+  crearUsuario() {
+    this.formSubmitted = true;
+
+    if (this.registerForm.valid) {
+      console.log("Enviando formulario...");
+    }else{
+      console.log("Formulario incorrecto...");
+    }
+  }
+
+  camposNoValidos(campo: string): boolean {
+    if (this.registerForm.get(campo)?.invalid && this.formSubmitted) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  aceptarTerminos() {
+    return !this.registerForm.get('terminos')?.value && this.formSubmitted;
   }
 }
