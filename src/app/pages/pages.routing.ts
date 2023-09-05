@@ -9,14 +9,13 @@ import { TripsComponent } from './trips/trips.component';
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'dashboard',
     component: PagesComponent,
     children: [
-      { path: 'dashboard', component: DashboardComponent },
+      { path: '', component: DashboardComponent },
       { path: 'carros', component: CarsComponent },
       { path: 'empleados', component: EmployeesComponent },
       { path: 'viajes', component: TripsComponent },
-      { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
     ],
   },
 ];
