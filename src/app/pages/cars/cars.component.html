@@ -1,0 +1,108 @@
+<div class="row">
+  <div class="col-md-6">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">Carro</h4>
+        <h6 class="card-subtitle">Crear Carro</h6>
+        <form [formGroup]="carroForm" autocomplete="off" class="form-horizontal p-t-20" (ngSubmit)="crearCarro()">
+          <div class="form-group row">
+            <label for="exampleInputuname3" class="col-sm-3 control-label">Modelo</label>
+            <div class="col-sm-9">
+              <div class="input-group">
+                <div class="input-group-addon"><i class="ti-car"></i></div>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="exampleInputuname3"
+                  placeholder="Modelo del Carro"
+                  formControlName="reference"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="exampleInputuname3" class="col-sm-3 control-label">Marca</label>
+            <div class="col-sm-9">
+              <div class="input-group">
+                <div class="input-group-addon"><i class="ti-car"></i></div>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="exampleInputuname3"
+                  placeholder="Marca del Carro"
+                  formControlName="brand"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="exampleInputuname3" class="col-sm-3 control-label">Fecha Fabricación</label>
+            <div class="col-sm-9">
+              <div class="input-group">
+                <div class="input-group-addon"><i class="ti-calendar"></i></div>
+                <input
+                  type="datetime-local"
+                  class="form-control"
+                  id="exampleInputuname3"
+                  placeholder="Fecha Fabricación"
+                  formControlName="fabricationDate"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="form-group row m-b-0">
+            <div class="offset-sm-3 col-sm-9">
+              <button type="submit" class="btn btn-success waves-effect waves-light">
+                <i class="fa fa-save"></i> Guardar
+              </button>
+            </div>
+          </div>
+          <br>
+          <div class="row">
+            <div class="col text-danger">
+              <p *ngIf="camposNoValidos('reference')">* El modelo del carro es obligatorio</p>
+              <p *ngIf="camposNoValidos('brand')">* La marca del carro es obligatorio</p>
+              <p *ngIf="camposNoValidos('fabricationDate')">* La fecha de fabricación del carro es obligatorio</p>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">Carros</h4>
+        <h6 class="card-subtitle">Carros registrados</h6>
+        <div class="table-responsive">
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>Id Carro</th>
+                <th>Modelo</th>
+                <th>Marca</th>
+                <th>Fecha Fabricacion</th>
+                <th class="text-nowrap">Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let carro of carros">
+                <td>{{ carro.carId }}</td>
+                <td>{{ carro.reference }}</td>
+                <td>{{ carro.brand }}</td>
+                <td>{{ carro.fabricationDate }}</td>
+                <td class="text-nowrap text-center">
+                  <a (click)="eliminarCarro(carro)" data-toggle="tooltip" data-original-title="Borrar" class="cursor">
+                    <i class="fa fa-close text-danger"></i>
+                  </a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
