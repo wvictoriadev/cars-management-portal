@@ -1,1 +1,141 @@
-<p>trips works!</p>
+<div class="row">
+  <div class="col-md-6">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">Viaje</h4>
+        <h6 class="card-subtitle">Crear Viaje</h6>
+        <form
+          [formGroup]="viajeForm"
+          autocomplete="off"
+          class="form-horizontal p-t-20"
+          (ngSubmit)="crearViaje()"
+        >
+          <div class="form-group row">
+            <label for="exampleInputEmail3" class="col-sm-3 control-label"
+              >Carro</label
+            >
+            <div class="col-sm-9">
+              <div class="input-group">
+                <div class="input-group-addon"><i class="ti-car"></i></div>
+                <select class="form-control" formControlName="carId">
+                  <option value="">Seleccionar Carro</option>
+                  <option *ngFor="let carro of carros" [value]="carro.carId">
+                    {{ carro.brand }}
+                  </option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="exampleInputEmail3" class="col-sm-3 control-label"
+              >Empleado</label
+            >
+            <div class="col-sm-9">
+              <div class="input-group">
+                <div class="input-group-addon"><i class="ti-user"></i></div>
+                <select class="form-control" formControlName="employeeId">
+                  <option value="">Seleccionar Empleado</option>
+                  <option
+                    *ngFor="let empleado of empleados"
+                    [value]="empleado.employeeId"
+                  >
+                    {{ empleado.name }}
+                  </option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="exampleInputuname3" class="col-sm-3 control-label">Fecha Retiro</label>
+            <div class="col-sm-9">
+              <div class="input-group">
+                <div class="input-group-addon"><i class="ti-calendar"></i></div>
+                <input
+                  type="datetime-local"
+                  class="form-control"
+                  id="exampleInputuname3"
+                  placeholder="Fecha Retiro"
+                  formControlName="endDate"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="exampleInputuname3" class="col-sm-3 control-label">Fecha Entrega</label>
+            <div class="col-sm-9">
+              <div class="input-group">
+                <div class="input-group-addon"><i class="ti-calendar"></i></div>
+                <input
+                  type="datetime-local"
+                  class="form-control"
+                  id="exampleInputuname3"
+                  placeholder="Fecha Entrega"
+                  formControlName="deliverDate"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="form-group row m-b-0">
+            <div class="offset-sm-3 col-sm-9">
+              <button
+                type="submit"
+                class="btn btn-success waves-effect waves-light">
+                <i class="fa fa-save"></i> Guardar
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">Viajes</h4>
+        <h6 class="card-subtitle">Viajes registrados</h6>
+        <div class="table-responsive">
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>Id Viaje</th>
+                <th>Empleado</th>
+                <th>Carro</th>
+                <th>Fecha Retiro</th>
+                <th>Fecha Entrega</th>
+                <th class="text-nowrap">Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let viaje of viajes">
+                <td>{{ viaje.tripId }}</td>
+                <td>{{ viaje.employee.name }}</td>
+                <td>{{ viaje.car.brand }}</td>
+                <td>{{ viaje.endDate }}</td>
+                <td>{{ viaje.deliverDate }}</td>
+                <td class="text-nowrap text-center">
+                  <a
+                    href="#"
+                    data-toggle="tooltip"
+                    data-original-title="Editar"
+                  >
+                    <i class="fa fa-pencil text-inverse m-r-10"></i>
+                  </a>
+                  <a
+                    (click)="eliminarViaje(viaje)"
+                    data-toggle="tooltip"
+                    data-original-title="Borrar"
+                    class="cursor"
+                  >
+                    <i class="fa fa-close text-danger"></i>
+                  </a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
