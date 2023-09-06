@@ -10,6 +10,7 @@ import { EmployeesComponent } from './employees/employees.component';
 import { TripsComponent } from './trips/trips.component';
 import { PagesComponent } from './pages.component';
 import { SharedModule } from '../shared/shared.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,13 @@ import { SharedModule } from '../shared/shared.module';
     TripsComponent,
     PagesComponent,
   ],
-  imports: [CommonModule, SharedModule, RouterModule, HttpClientModule],
+  imports: [
+    CommonModule,
+    SharedModule,
+    RouterModule,
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
+  ],
 })
 export class PagesModule {}
