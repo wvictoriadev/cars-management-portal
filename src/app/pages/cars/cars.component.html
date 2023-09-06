@@ -77,12 +77,11 @@
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>lorem</td>
-                <td>lorem</td>
-                <td>lorem</td>
-                <td>lorem</td>
-                <td>lorem</td>
+              <tr *ngFor="let carro of carros">
+                <td>{{ carro.carId }}</td>
+                <td>{{ carro.reference }}</td>
+                <td>{{ carro.brand }}</td>
+                <td>{{ carro.fabricationDate }}</td>
                 <td class="text-nowrap text-center">
                   <a href="#" data-toggle="tooltip" data-original-title="Editar">
                     <i class="fa fa-pencil text-inverse m-r-10"></i>

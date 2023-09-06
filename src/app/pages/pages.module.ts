@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
 // import { AppRoutingModule } from '../app-routing.module';
 
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -25,6 +26,6 @@ import { SharedModule } from '../shared/shared.module';
     TripsComponent,
     PagesComponent,
   ],
-  imports: [CommonModule, SharedModule, RouterModule],
+  imports: [CommonModule, SharedModule, RouterModule, HttpClientModule],
 })
 export class PagesModule {}
