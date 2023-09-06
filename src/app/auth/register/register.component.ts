@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { UsuarioService } from 'src/app/services/usuario.service';
 import Swal from 'sweetalert2';
 
@@ -13,9 +14,9 @@ export class RegisterComponent {
 
   public registerForm = this.fb.group(
     {
-      // nombre: ['', [Validators.required, Validators.minLength(3)]],
-      username: ['', [Validators.required]],
-      password: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      username: ['', [Validators.required, Validators.minLength(4)]],
+      password: ['', [Validators.required, Validators.minLength(4)]],
       // password2: ['', Validators.required],
       // terminos: [false, Validators.required],
     },
@@ -26,7 +27,8 @@ export class RegisterComponent {
 
   constructor(
     private fb: FormBuilder,
-    private usuarioService: UsuarioService
+    private usuarioService: UsuarioService,
+    private router: Router
   ) {}
 
   crearUsuario() {
@@ -39,7 +41,16 @@ export class RegisterComponent {
     this.usuarioService.crearUsuario(this.registerForm.value).subscribe(
       (resp) => {
         console.log('Usuario Creado...');
-        console.log(resp);
+        if (
+          resp.username == null &&
+          resp.username == null &&
+          resp.valid == false
+        ) {
+          Swal.fire('Error', 'El usuario ya existe', 'error');
+        }else{
+          Swal.fire('Correctamente', 'Usuario Creado', 'success');
+          this.router.navigateByUrl('/login');
+        }
       },
       (err) => {
         Swal.fire('Error', err, 'error');

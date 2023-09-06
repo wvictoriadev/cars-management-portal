@@ -42,6 +42,7 @@ export class EmployeesComponent implements OnInit {
     this.empleadoService
       .crearEmpleado(this.empleadoForm.value)
       .subscribe((resp) => {
+        this.cargarEmpleados();
         Swal.fire('Creado', 'Empleado Creado Correctamente', 'success');
       });
   }

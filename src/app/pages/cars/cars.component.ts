@@ -41,6 +41,7 @@ export class CarsComponent implements OnInit {
     }
 
     this.carroService.crearCarro(this.carroForm.value).subscribe((resp) => {
+      this.cargarCarros();
       Swal.fire('Creado', 'Carro Creado Correctamente', 'success');
     });
   }
